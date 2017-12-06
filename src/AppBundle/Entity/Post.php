@@ -142,17 +142,17 @@ class Post
     /**
      * @return string
      */
-    public function getImageName(): string
+    public function getImageName(): ?string
     {
         return $this->imageName;
     }
 
     /**
-     * @param string $imageName
+     * @param string|null $imageName
      *
      * @return Post
      */
-    public function setImageName(string $imageName): ?Post
+    public function setImageName($imageName): ?Post
     {
         $this->imageName = $imageName;
 
@@ -185,7 +185,7 @@ class Post
     /**
      * @return int
      */
-    public function getImageSize(): int
+    public function getImageSize(): ?int
     {
         return $this->imageSize;
     }
@@ -195,7 +195,7 @@ class Post
      *
      * @return Post
      */
-    public function setImageSize(int $imageSize): ?Post
+    public function setImageSize($imageSize): ?Post
     {
         $this->imageSize = $imageSize;
 

@@ -9,26 +9,26 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Class DefaultController
- *
+ * Class CategoryController
  * @package App\AppBundle\Controller
  */
-class DefaultController extends Controller
+class CategoryController extends Controller
 {
     /**
+     * @param integer $id
      * @param Request $request
      *
-     * @Route("/", name="home")
+     * @Route("/category/{id}", name="show_category")
      *
      * @return Response
      */
-    public function indexAction(Request $request)
+    public function showAction($id, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $categories = $em->getRepository(Category::class)->findAll();
+        $category = $em->getRepository(Category::class)->find($id);
 
-        return $this->render('default/index.html.twig', [
-            'categories' => $categories,
+        return $this->render('category/show.html.twig', [
+            'category' => $category,
         ]);
     }
 }

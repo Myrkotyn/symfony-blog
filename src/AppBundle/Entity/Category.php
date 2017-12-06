@@ -113,4 +113,14 @@ class Category
 
         return $this;
     }
+
+    /**
+     * Magic method __toString
+     *
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return $this->name;
+    }
 }

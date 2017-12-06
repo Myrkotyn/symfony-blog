@@ -2,33 +2,34 @@
 
 namespace App\AppBundle\Controller;
 
-use App\AppBundle\Entity\Category;
+use App\AppBundle\Entity\Post;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Class DefaultController
+ * Class PostController
  *
  * @package App\AppBundle\Controller
  */
-class DefaultController extends Controller
+class PostController extends Controller
 {
     /**
+     * @param $id
      * @param Request $request
      *
-     * @Route("/", name="home")
+     * @Route("/post/{id}", name="show_post")
      *
      * @return Response
      */
-    public function indexAction(Request $request)
+    public function showAction($id, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $categories = $em->getRepository(Category::class)->findAll();
+        $post = $em->getRepository(Post::class)->find($id);
 
-        return $this->render('default/index.html.twig', [
-            'categories' => $categories,
+        return $this->render('post/show.html.twig', [
+            'post' => $post
         ]);
     }
 }

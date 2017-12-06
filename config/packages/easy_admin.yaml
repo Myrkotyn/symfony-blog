@@ -5,8 +5,18 @@ easy_admin:
             list:
                 fields:
                     - { property: 'name', type: 'string'}
-                    - { property: 'file', type: 'image' }
+                    - { property: 'imageName', type: 'image', base_path: 'uploads/images/posts' }
                     - { property: 'category', type: 'Category'}
+            form:
+                fields:
+                    - { property: 'name', type: 'text' }
+                    - { property: 'content', type: 'textarea' }
+                    - { property: 'imageFile', type: 'file' }
+                    - { property: 'category', type: 'entity', type_options: {
+                            class: 'App\AppBundle\Entity\Category',
+                            choice_label: 'name'
+                        }
+                      }
         Category:
             class: App\AppBundle\Entity\Category
             new:

@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% set title = category.name %}
+{% block content %}
+    <h3>Category {{ category.name }}</h3>
+
+    <ul>
+        {% for post in category.posts %}
+            <li><a href="{{ path('show_post', { 'id': post.id }) }}">{{ post.name }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

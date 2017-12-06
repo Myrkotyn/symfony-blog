@@ -1,9 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% set title = 'Main page' %}
+{% set title = 'By Mlog' %}
 {% block title %}{{ title }} | {{ parent() }}{% endblock title %}
 
 {% block content %}
-    <h3>Add category</h3>
-    {{ form(form) }}
+    <h3>List of categories</h3>
+    <div class="row">
+        <div class="col-md-6">
+            <ul class="list-group">
+                {% for category in categories %}
+                    <li class="list-group-item"><a href="{{ path('show_category', { 'id': category.id }) }}">{{ category.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
 {% endblock content %}
