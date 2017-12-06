@@ -68,11 +68,6 @@ class DefaultController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            /** @var UploadedFile $file */
-//            $file = $post->getFile();
-//            $fileName = md5(uniqid()).'.'.$file->guessExtension();
-//            $file->move($this->getParameter('images_directory'), $fileName);
-//            $post->setFile($fileName);
 
             $formData = $form->getData();
             $em = $this->getDoctrine()->getManager();
