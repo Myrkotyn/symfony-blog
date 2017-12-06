@@ -33,6 +33,7 @@ class Post
      * @var string
      *
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      */
     private $name;
 
@@ -40,6 +41,7 @@ class Post
      * @var string
      *
      * @ORM\Column(type="text")
+     * @Assert\NotBlank()
      */
     private $content;
 
@@ -55,6 +57,7 @@ class Post
      *
      * @Vich\UploadableField(mapping="post_image", fileNameProperty="imageName", size="imageSize")
      * @Assert\File(maxSize="2M", mimeTypesMessage = "Please upload a valid image")
+     * @Assert\NotBlank()
      */
     private $imageFile;
 
@@ -70,6 +73,7 @@ class Post
      *
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="posts")
      * @ORM\JoinColumn(name="category", referencedColumnName="id")
+     * @Assert\NotBlank()
      */
     private $category;
 
