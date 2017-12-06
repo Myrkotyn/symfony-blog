@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: andrew
- * Date: 12/4/17
- * Time: 8:35 PM
- */
+
 namespace App\AppBundle\Controller;
 
 use App\AppBundle\Entity\Category;
@@ -16,7 +11,6 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -49,7 +43,7 @@ class DefaultController extends Controller
                 ]
             ])
             ->add('category', EntityType::class, [
-                'class' => 'App\AppBundle\Entity\Category',
+                'class' => Category::class,
                 'choice_label' => 'name'
             ])
             ->add('imageFile', FileType::class, [
@@ -73,8 +67,6 @@ class DefaultController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($formData);
             $em->flush();
-
-            return $this->redirect($this->generateUrl('home'));
         }
 
         return $this->render('default/index.html.twig', [

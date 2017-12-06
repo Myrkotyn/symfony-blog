@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: andrew
- * Date: 12/5/17
- * Time: 12:52 PM
- */
 
 namespace App\AppBundle\Entity;
 
@@ -16,7 +10,6 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Class Post
- * @package App\AppBundle\Entity
  *
  * @ORM\Entity(repositoryClass="App\AppBundle\Repository\PostRepository")
  * @ORM\Table(name="posts")
@@ -96,10 +89,14 @@ class Post
 
     /**
      * @param string $name
+     *
+     * @return Post
      */
-    public function setName(string $name): void
+    public function setName(string $name): ?Post
     {
         $this->name = $name;
+
+        return $this;
     }
 
     /**
@@ -112,10 +109,14 @@ class Post
 
     /**
      * @param string $content
+     *
+     * @return Post
      */
-    public function setContent(string $content): void
+    public function setContent(string $content): ?Post
     {
         $this->content = $content;
+
+        return $this;
     }
 
     /**
@@ -128,10 +129,14 @@ class Post
 
     /**
      * @param Category $category
+     *
+     * @return Post
      */
-    public function setCategory(Category $category): void
+    public function setCategory(Category $category): ?Post
     {
         $this->category = $category;
+
+        return $this;
     }
 
     /**
@@ -144,10 +149,14 @@ class Post
 
     /**
      * @param string $imageName
+     *
+     * @return Post
      */
-    public function setImageName(string $imageName): void
+    public function setImageName(string $imageName): ?Post
     {
         $this->imageName = $imageName;
+
+        return $this;
     }
 
     /**
@@ -183,9 +192,13 @@ class Post
 
     /**
      * @param int $imageSize
+     *
+     * @return Post
      */
-    public function setImageSize(int $imageSize): void
+    public function setImageSize(int $imageSize): ?Post
     {
         $this->imageSize = $imageSize;
+
+        return $this;
     }
 }

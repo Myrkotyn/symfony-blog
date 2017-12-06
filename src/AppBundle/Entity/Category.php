@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: andrew
- * Date: 12/4/17
- * Time: 7:26 PM
- */
 
 namespace App\AppBundle\Entity;
 
@@ -13,6 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
+ * Class Category
+ *
  * @ORM\Entity(repositoryClass="App\AppBundle\Repository\CategoryRepository")
  * @ORM\Table(name="categories")
  */
@@ -68,10 +64,14 @@ class Category
 
     /**
      * @param string $name
+     *
+     * @return Category
      */
-    public function setName(string $name): void
+    public function setName(string $name): ?Category
     {
         $this->name = $name;
+
+        return $this;
     }
 
     /**
@@ -84,10 +84,14 @@ class Category
 
     /**
      * @param string $description
+     *
+     * @return Category
      */
-    public function setDescription(string $description): void
+    public function setDescription(string $description): ?Category
     {
         $this->description = $description;
+
+        return $this;
     }
 
     /**
@@ -100,9 +104,13 @@ class Category
 
     /**
      * @param Post[]|Collection $posts
+     *
+     * @return Category
      */
-    public function setPosts($posts): void
+    public function setPosts($posts): ?Category
     {
         $this->posts = $posts;
+
+        return $this;
     }
 }
