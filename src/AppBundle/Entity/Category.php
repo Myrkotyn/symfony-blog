@@ -17,6 +17,16 @@ class Category
     use TimestampableEntity;
 
     /**
+     * Magic method __toString
+     *
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return $this->name;
+    }
+
+    /**
      * @var int
      *
      * @ORM\Column(type="integer")
@@ -112,15 +122,5 @@ class Category
         $this->posts = $posts;
 
         return $this;
-    }
-
-    /**
-     * Magic method __toString
-     *
-     * @return string
-     */
-    public function __toString(): string
-    {
-        return $this->name;
     }
 }

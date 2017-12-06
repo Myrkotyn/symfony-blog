@@ -2,7 +2,7 @@
 
 {% set title = post.name %}
 {% block content %}
-    <h2>Category {{ post.category }} - {{ post.name }}</h2>
+    <h2>Category {{ post.category.name }} - {{ post.name }}</h2>
     <blockquote>
         <p>{{ post.content }}</p>
         <footer>Created at {{ post.createdAt|date('Y-m-d') }}</footer>

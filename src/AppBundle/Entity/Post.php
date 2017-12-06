@@ -7,6 +7,7 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Post
@@ -53,6 +54,7 @@ class Post
      * @var File
      *
      * @Vich\UploadableField(mapping="post_image", fileNameProperty="imageName", size="imageSize")
+     * @Assert\File(maxSize="2M", mimeTypesMessage = "Please upload a valid image")
      */
     private $imageFile;
 
