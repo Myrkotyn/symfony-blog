@@ -1,0 +1,15 @@
+easy_admin:
+    entities:
+        Post:
+            class: App\AppBundle\Entity\Post
+            list:
+                fields:
+                    - { property: 'name', type: 'string'}
+                    - { property: 'file', type: 'image' }
+                    - { property: 'category', type: 'Category'}
+        Category:
+            class: App\AppBundle\Entity\Category
+            new:
+                fields:
+                    - 'name'
+                    - 'description'
