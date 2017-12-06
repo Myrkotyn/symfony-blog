@@ -10,6 +10,9 @@ namespace App\AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Class Post
@@ -17,6 +20,7 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
  *
  * @ORM\Entity(repositoryClass="App\AppBundle\Repository\PostRepository")
  * @ORM\Table(name="posts")
+ * @Vich\Uploadable
  */
 class Post
 {
@@ -48,9 +52,23 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      */
-    private $file;
+    private $imageName;
+
+    /**
+     * @var File
+     *
+     * @Vich\UploadableField(mapping="post_image", fileNameProperty="imageName", size="imageSize")
+     */
+    private $imageFile;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(type="integer")
+     */
+    private $imageSize;
 
     /**
      * @var Category $category
@@ -101,22 +119,6 @@ class Post
     }
 
     /**
-     * @return string
-     */
-    public function getFile(): ?string
-    {
-        return $this->file;
-    }
-
-    /**
-     * @param string $file
-     */
-    public function setFile(string $file): void
-    {
-        $this->file = $file;
-    }
-
-    /**
      * @return Category
      */
     public function getCategory(): ?Category
@@ -130,5 +132,60 @@ class Post
     public function setCategory(Category $category): void
     {
         $this->category = $category;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImageName(): string
+    {
+        return $this->imageName;
+    }
+
+    /**
+     * @param string $imageName
+     */
+    public function setImageName(string $imageName): void
+    {
+        $this->imageName = $imageName;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * @param File|UploadedFile $imageFile
+     *
+     * @return Post
+     */
+    public function setImageFile(File $imageFile = null): ?Post
+    {
+        $this->imageFile = $imageFile;
+        if ($imageFile) {
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getImageSize(): int
+    {
+        return $this->imageSize;
+    }
+
+    /**
+     * @param int $imageSize
+     */
+    public function setImageSize(int $imageSize): void
+    {
+        $this->imageSize = $imageSize;
     }
 }

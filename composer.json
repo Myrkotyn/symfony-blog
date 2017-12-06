@@ -13,7 +13,8 @@
         "symfony/lts": "^3",
         "symfony/web-server-bundle": "3.4",
         "symfony/webpack-encore-pack": "^1.0",
-        "symfony/yaml": "^3.4"
+        "symfony/yaml": "^3.4",
+        "vich/uploader-bundle": "^1.6"
     },
     "require-dev": {
         "symfony/dotenv": "^3.4"
