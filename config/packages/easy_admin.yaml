@@ -6,7 +6,7 @@ easy_admin:
                 fields:
                     - { property: 'name', type: 'string'}
                     - { property: 'imageName', type: 'image', base_path: 'uploads/images/posts' }
-                    - { property: 'category', type: 'Category'}
+                    - { property: 'category', type: 'string' }
             form:
                 fields:
                     - { property: 'name', type: 'text' }
