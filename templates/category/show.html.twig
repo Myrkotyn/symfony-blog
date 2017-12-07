@@ -10,5 +10,5 @@
         {% endfor %}
     </ul>
 
-    {% include 'comments/show.html.twig' with { 'comments': comments, 'entity': entity, 'id': category.id } %}
+    {% include 'comments/show.html.twig' with { 'comments': comments, 'url': path('add_category_ajax_comment', { 'id': category.id }) } %}
 {% endblock content %}

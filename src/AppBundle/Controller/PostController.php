@@ -32,8 +32,7 @@ class PostController extends Controller
 
         return $this->render('post/show.html.twig', [
             'post' => $post,
-            'comments' => $comments,
-            'entity' => Post::class
+            'comments' => $comments
         ]);
     }
 }

@@ -31,8 +31,7 @@ class CategoryController extends Controller
 
         return $this->render('category/show.html.twig', [
             'category' => $category,
-            'comments' => $comments,
-            'entity' => Category::class
+            'comments' => $comments
         ]);
     }
 }

@@ -4,30 +4,27 @@ export default function comments() {
         jQuery(form).submit(function (e) {
             e.preventDefault();
 
-            let authorInput = jQuery(this).find('#comment-author')
+            let authorInput = jQuery(this).find('#comment-author');
             let author = authorInput.val();
             let content = jQuery(this).find('#comment-content').val();
-            let entity = jQuery(this).find('#entity').val();
-            let objectId = jQuery(this).find('#objectId').val();
+            let url = jQuery(this).data('url');
 
             let pattern = /^[A-Z][a-zA-Z]+\s[A-Z][a-zA-Z]+$/;
             if (pattern.test(author)) {
                 jQuery.ajax({
-                    url: '/comment/add-ajax-comment',
+                    url: url,
                     method: 'POST',
                     data: {
                         author: author,
-                        content: content,
-                        entity: entity,
-                        objectId: objectId
-                    }
+                        content: content
+                    },
                 }).done(function (data) {
-                    if (data) {
-                        renderNewComment(data['author'], data['content'], data['time']);
-                        jQuery('.alert-danger').addClass('hide');
-                        authorInput.parent().removeClass('has-error');
-                    }
-                });
+                    renderNewComment(data['author'], data['content'], data['time']);
+                    jQuery('.alert-danger').addClass('hide');
+                    authorInput.parent().removeClass('has-error');
+                }).fail(function (data) {
+                    alert('error');
+                })
             } else {
                 authorInput.parent().addClass('has-error');
                 jQuery('.alert-danger').removeClass('hide');
