@@ -9,4 +9,6 @@
             <li><a href="{{ path('show_post', { 'id': post.id }) }}">{{ post.name }}</a></li>
         {% endfor %}
     </ul>
+
+    {% include 'comments/show.html.twig' with { 'comments': comments, 'entity': entity, 'id': category.id } %}
 {% endblock content %}

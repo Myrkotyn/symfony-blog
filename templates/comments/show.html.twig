@@ -1,0 +1,43 @@
+<hr>
+<form action="" class="form" id="add-new-comment">
+    <div class="row">
+        <div class="col-md-8 form-group">
+            <label for="comment-content">Text</label>
+            <input type="text" name="comment-content" id="comment-content" class="form-control" required>
+        </div>
+        <div class="col-md-4 form-group">
+            <label for="comment-author">Name</label>
+            <input type="text" name="comment-author" id="comment-author" class="form-control" required>
+        </div>
+
+        <input type="hidden" value="{{ entity }}" id="entity">
+        <input type="hidden" value="{{ id }}" id="objectId">
+        <div class="col-md-2 form-group">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+</form>
+<div class="alert alert-danger hide" role="alert">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Error:</span>
+    Name must consist of 2 words and be with uppercase first letter
+</div>
+
+<h5>Comments</h5>
+<ul class="list-group">
+    {% for comment in comments %}
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-md-4">
+                    <b>Author: </b><small>{{ comment.author }}</small>
+                </div>
+                <div class="col-md-5">
+                    {{ comment.content }}
+                </div>
+                <div class="col-md-3">
+                    <b>Created at: </b> <small>{{ comment.createdAt|date('H:i Y-m-d') }}</small>
+                </div>
+            </div>
+        </li>
+    {% endfor %}
+</ul>

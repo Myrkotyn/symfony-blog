@@ -2,6 +2,7 @@
 
 namespace App\AppBundle\Controller;
 
+use App\AppBundle\Entity\Comment;
 use App\AppBundle\Entity\Post;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,9 +28,12 @@ class PostController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $post = $em->getRepository(Post::class)->find($id);
+        $comments = $em->getRepository(Comment::class)->findCommentsByPost($post);
 
         return $this->render('post/show.html.twig', [
-            'post' => $post
+            'post' => $post,
+            'comments' => $comments,
+            'entity' => Post::class
         ]);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\AppBundle\Controller;
 
 use App\AppBundle\Entity\Category;
+use App\AppBundle\Entity\Comment;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,9 +27,12 @@ class CategoryController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $category = $em->getRepository(Category::class)->find($id);
+        $comments = $em->getRepository(Comment::class)->findCommentsByCategory($category);
 
         return $this->render('category/show.html.twig', [
             'category' => $category,
+            'comments' => $comments,
+            'entity' => Category::class
         ]);
     }
 }

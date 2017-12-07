@@ -23,3 +23,5 @@ easy_admin:
                 fields:
                     - 'name'
                     - 'description'
+        Comments:
+            class: App\AppBundle\Entity\Comment

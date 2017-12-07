@@ -8,4 +8,6 @@
         <footer>Created at {{ post.createdAt|date('Y-m-d') }}</footer>
     </blockquote>
     <img width="400px" class="img-thumbnail" src="{{ asset('uploads/images/posts/' ~ post.imageName) }}" alt="">
+
+    {% include 'comments/show.html.twig' with { 'comments': comments, 'entity': entity, 'id': post.id } %}
 {% endblock content %}

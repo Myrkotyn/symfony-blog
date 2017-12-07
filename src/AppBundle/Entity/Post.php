@@ -2,6 +2,7 @@
 
 namespace App\AppBundle\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\HttpFoundation\File\File;
@@ -76,6 +77,11 @@ class Post
      * @Assert\NotBlank()
      */
     private $category;
+
+    /**
+     * @var Collection|Comment[]
+     */
+    private $comments;
 
     /**
      * @return int
@@ -204,6 +210,26 @@ class Post
     public function setImageSize($imageSize): ?Post
     {
         $this->imageSize = $imageSize;
+
+        return $this;
+    }
+
+    /**
+     * @return Comment[]|Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * @param Comment[]|Collection $comments
+     *
+     * @return Post
+     */
+    public function setComments($comments): Post
+    {
+        $this->comments = $comments;
 
         return $this;
     }
