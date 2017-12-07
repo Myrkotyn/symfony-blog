@@ -58,7 +58,6 @@ class Post
      *
      * @Vich\UploadableField(mapping="post_image", fileNameProperty="imageName", size="imageSize")
      * @Assert\File(maxSize="2M", mimeTypesMessage = "Please upload a valid image")
-     * @Assert\NotBlank()
      */
     private $imageFile;
 

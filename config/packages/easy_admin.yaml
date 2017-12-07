@@ -19,9 +19,15 @@ easy_admin:
                       }
         Category:
             class: App\AppBundle\Entity\Category
-            new:
+            form:
                 fields:
                     - 'name'
                     - 'description'
         Comments:
             class: App\AppBundle\Entity\Comment
+            form:
+                fields:
+                    - author
+                    - content
+                    - objectId
+                    - objectName
