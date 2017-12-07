@@ -1,12 +1,8 @@
 <?php
 
-
 namespace App\AppBundle\Service;
 
-
-use App\AppBundle\Entity\Category;
 use App\AppBundle\Entity\Comment;
-use App\AppBundle\Entity\Post;
 use Doctrine\Common\Persistence\ObjectManager;
 
 /**
