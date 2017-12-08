@@ -13,7 +13,7 @@
 /node_modules/
 ###< symfony/webpack-encore-pack ###
 
-.idea/
+.idea
 /public/uploads/images/posts/*
 
 ###> symfony/phpunit-bridge ###
