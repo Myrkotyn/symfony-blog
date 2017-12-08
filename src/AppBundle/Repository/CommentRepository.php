@@ -14,11 +14,13 @@ class CommentRepository extends EntityRepository
         $qb = $this->createQueryBuilder('c');
 
         return $qb->select('c')
-            ->join('AppBundle:Post', 'p', Expr\Join::WITH, $qb->expr()->eq( 'p.id', 'c.objectId'))
-            ->join('AppBundle:Post', 'p2', Expr\Join::WITH, $qb->expr()->eq('c.objectName', ' :object_class'))
+            ->join('AppBundle:Post', 'p', Expr\Join::WITH,
+                $qb->expr()->andX(
+                    $qb->expr()->eq('p.id', 'c.objectId'),
+                    $qb->expr()->eq('c.objectName', ' :object_class')
+                ))
             ->andWhere($qb->expr()->eq('p.id', ':post_id'))
-            ->setParameter('object_class', Post::class)
-            ->setParameter('post_id', $post->getId())
+            ->setParameters(['object_class' => Post::class, 'post_id' => $post->getId()])
             ->getQuery()
             ->getResult();
     }
@@ -28,11 +30,13 @@ class CommentRepository extends EntityRepository
         $qb = $this->createQueryBuilder('c');
 
         return $qb->select('c')
-            ->join('AppBundle:Category', 'cat', Expr\Join::WITH, $qb->expr()->eq( 'cat.id', 'c.objectId'))
-            ->join('AppBundle:Category', 'cat2', Expr\Join::WITH, $qb->expr()->eq('c.objectName', ' :object_class'))
+            ->join('AppBundle:Category', 'cat', Expr\Join::WITH,
+                $qb->expr()->andX(
+                    $qb->expr()->eq('cat.id', 'c.objectId'),
+                    $qb->expr()->eq('c.objectName', ' :object_class')
+                ))
             ->andWhere($qb->expr()->eq('cat.id', ':category_id'))
-            ->setParameter('object_class', Category::class)
-            ->setParameter('category_id', $category->getId())
+            ->setParameters(['object_class' => Category::class, 'category_id' => $category->getId()])
             ->getQuery()
             ->getResult();
     }
