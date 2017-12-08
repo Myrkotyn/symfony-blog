@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Class SessionStatistic
  * @package App\AppBundle\Entity
  *
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="App\AppBundle\Repository\SessionStatisticRepository")
  * @ORM\Table(name="session_statistics")
  */
 class SessionStatistic
