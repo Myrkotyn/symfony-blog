@@ -37,6 +37,20 @@ class SessionStatistic
     private $browser;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(type="string")
+     */
+    private $version;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string")
+     */
+    private $os;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -80,6 +94,46 @@ class SessionStatistic
     public function setBrowser(string $browser): SessionStatistic
     {
         $this->browser = $browser;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVersion(): ?string
+    {
+        return $this->version;
+    }
+
+    /**
+     * @param string $version
+     *
+     * @return SessionStatistic
+     */
+    public function setVersion(string $version): SessionStatistic
+    {
+        $this->version = $version;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOs(): ?string
+    {
+        return $this->os;
+    }
+
+    /**
+     * @param string $os
+     *
+     * @return SessionStatistic
+     */
+    public function setOs(string $os): SessionStatistic
+    {
+        $this->os = $os;
 
         return $this;
     }

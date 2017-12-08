@@ -5,6 +5,7 @@
         "php": "^7.0.8",
         "doctrine/doctrine-migrations-bundle": "^1.0",
         "javiereguiluz/easyadmin-bundle": "^1.17",
+        "sinergi/browser-detector": "^6.1",
         "stof/doctrine-extensions-bundle": "^1.2",
         "symfony/console": "^3.4",
         "symfony/flex": "^1.0",
