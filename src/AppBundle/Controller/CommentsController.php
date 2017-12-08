@@ -19,7 +19,7 @@ class CommentsController extends Controller
 {
     /**
      * @param Request $request
-     * @param int $id
+     * @param Post $post
      *
      * @Route("comment/post/{id}/add-ajax-comment", name="add_post_ajax_comment")
      *
@@ -27,7 +27,7 @@ class CommentsController extends Controller
      *
      * @return JsonResponse
      */
-    public function addPostAjaxComment(Request $request, int $id)
+    public function addPostAjaxComment(Request $request, Post $post)
     {
         if (!$request->isXmlHttpRequest()) {
             throw new BadRequestHttpException('Bad Request');
@@ -38,7 +38,7 @@ class CommentsController extends Controller
         $author = $request->get('author');
         $content = $request->get('content');
 
-        $comment = CommentService::createNewComment(Post::class, $em, $author, $content, $id);
+        $comment = CommentService::createNewComment($post, $em, $author, $content);
 
         return new JsonResponse([
             'author' => $comment->getAuthor(),
@@ -49,7 +49,7 @@ class CommentsController extends Controller
 
     /**
      * @param Request $request
-     * @param int $id
+     * @param Category $category
      *
      * @Route("comment/category/{id}/add-ajax-comment", name="add_category_ajax_comment")
      *
@@ -57,7 +57,7 @@ class CommentsController extends Controller
      *
      * @return JsonResponse
      */
-    public function addCategoryAjaxComment(Request $request, int $id)
+    public function addCategoryAjaxComment(Request $request, Category $category)
     {
         if (!$request->isXmlHttpRequest()) {
             throw new BadRequestHttpException('Bad Request');
@@ -67,7 +67,7 @@ class CommentsController extends Controller
         $author = $request->get('author');
         $content = $request->get('content');
 
-        $comment = CommentService::createNewComment(Category::class, $em, $author, $content, $id);
+        $comment = CommentService::createNewComment($category, $em, $author, $content);
 
         return new JsonResponse([
             'author' => $comment->getAuthor(),

@@ -16,17 +16,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class CategoryController extends Controller
 {
     /**
-     * @param integer $id
+     * @param Category $category
      * @param Request $request
      *
      * @Route("/category/{id}", name="show_category")
      *
      * @return Response
      */
-    public function showAction($id, Request $request)
+    public function showAction(Request $request, Category $category)
     {
         $em = $this->getDoctrine()->getManager();
-        $category = $em->getRepository(Category::class)->find($id);
         $comments = $em->getRepository(Comment::class)->findCommentsByCategory($category);
 
         return $this->render('category/show.html.twig', [

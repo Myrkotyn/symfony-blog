@@ -2,8 +2,11 @@
 
 namespace App\AppBundle\Service;
 
+use App\AppBundle\Entity\Category;
 use App\AppBundle\Entity\Comment;
+use App\AppBundle\Entity\Post;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManager;
 
 /**
  * Class CommentService
@@ -12,22 +15,28 @@ use Doctrine\Common\Persistence\ObjectManager;
  */
 class CommentService
 {
+    private $em;
+
+    public function __construct(EntityManager $em)
+    {
+        $this->em = $em;
+    }
     /**
-     * @param string $entity
+     * @param Post|Category $entity
      * @param ObjectManager $em
      * @param string $author
      * @param string $content
-     * @param int $objectId
      *
      * @return Comment
      */
-    public static function createNewComment(string $entity, ObjectManager $em, string $author, string $content, int $objectId)
+    public static function createNewComment($entity, ObjectManager $em, string $author, string $content)
     {
+        $className = $em->getMetadataFactory()->getMetadataFor(get_class($entity))->getName();
         $comment = (new Comment())
             ->setAuthor($author)
             ->setContent($content)
-            ->setObjectName($entity)
-            ->setObjectId($objectId);
+            ->setObjectName($className)
+            ->setObjectId($entity->getId());
 
         $em->persist($comment);
         $em->flush();

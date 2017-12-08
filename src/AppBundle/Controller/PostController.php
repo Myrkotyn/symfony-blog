@@ -17,17 +17,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class PostController extends Controller
 {
     /**
-     * @param $id
+     * @param Post $post
      * @param Request $request
      *
      * @Route("/post/{id}", name="show_post")
      *
      * @return Response
      */
-    public function showAction($id, Request $request)
+    public function showAction(Request $request, Post $post)
     {
         $em = $this->getDoctrine()->getManager();
-        $post = $em->getRepository(Post::class)->find($id);
         $comments = $em->getRepository(Comment::class)->findCommentsByPost($post);
 
         return $this->render('post/show.html.twig', [
