@@ -33,12 +33,11 @@ class CommentsController extends Controller
             throw new BadRequestHttpException('Bad Request');
         }
 
-        $em = $this->getDoctrine()->getManager();
-
         $author = $request->get('author');
         $content = $request->get('content');
 
-        $comment = CommentService::createNewComment($post, $em, $author, $content);
+        $commentService = $this->get('app.comment_service');
+        $comment = $commentService->createNewComment($post, $author, $content);
 
         return new JsonResponse([
             'author' => $comment->getAuthor(),
@@ -62,12 +61,12 @@ class CommentsController extends Controller
         if (!$request->isXmlHttpRequest()) {
             throw new BadRequestHttpException('Bad Request');
         }
-        $em = $this->getDoctrine()->getManager();
 
         $author = $request->get('author');
         $content = $request->get('content');
 
-        $comment = CommentService::createNewComment($category, $em, $author, $content);
+        $commentService = $this->get('app.comment_service');
+        $comment = $commentService->createNewComment($category, $author, $content);
 
         return new JsonResponse([
             'author' => $comment->getAuthor(),
